@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Mendownload Ngrok.
       run: |
-        Invoke-WebRequest https://drive.google.com/uc?1RqAkTvlm8ZW8S8kuX-HvfOKgrQsvjLCB -OutFile ngrok.zip
+        Invoke-WebRequest https://drive.google.com/uc?id=1RqAkTvlm8ZW8S8kuX-HvfOKgrQsvjLCB -OutFile ngrok.zip
         Invoke-WebRequest https://drive.google.com/uc?id=1MIy6yvPpJJ3FpTsj0gsNrubSTNA-OHL1 -OutFile start.bat
         Invoke-WebRequest https://drive.google.com/uc?id=1ceZ2fKtk89po9d8qaDp8igTbeGfGK34p -OutFile wallpaper.jpg
         Invoke-WebRequest https://drive.google.com/uc?id=1sMR6JuXS3Z6KJwFNHZ8OYl8SD8BN4fPD -OutFile wallpaper.bat
@@ -34,5 +34,5 @@ jobs:
       run: cmd /c start.bat
     - name: Selamat RDP Anda Berhasil Dibuat! Silahkan Tutup Tab ini Sekarang.
       run: | 
-        Invoke-WebRequest https://drive.google.com/uc?id=d/1nYyPtRkJ5bzKGAGccLuCTACfReKUS6yi -OutFile loop.ps1
+        Invoke-WebRequest https://drive.google.com/uc?id=1nYyPtRkJ5bzKGAGccLuCTACfReKUS6yi -OutFile loop.ps1
         ./loop.ps1
