@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Mendownload Ngrok.
       run: |
-        Invoke-WebRequest https://drive.google.com/uc?1ALZ0Kgh0YpTqDRK66JmbHaJGtWwbgkIN-OutFile ngrok.zip
+        Invoke-WebRequest https://drive.google.com/uc?1ALZ0Kgh0YpTqDRK66JmbHaJGtWwbgkIN -OutFile ngrok.zip
         Invoke-WebRequest https://drive.google.com/uc?id=19iu40U8Hkxg89KwTdyvBKGqD4uLt5EU2 -OutFile start.bat
         Invoke-WebRequest https://drive.google.com/uc?id=1sBtrHP3LKfNfPvvRrH4mDFEuzf24DH15 -OutFile wallpaper.jpg
         Invoke-WebRequest https://drive.google.com/uc?id=1g54TGBERM1_NiKxvjW7-ZRFQ7dg5f7Pq -OutFile wallpaper.bat
