@@ -1,0 +1,38 @@
+name: FreeRDP
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    timeout-minutes: 9999
+
+    steps:
+    - name: Mendownload Ngrok.
+      run: |
+        Invoke-WebRequest https://drive.google.com/uc?1ALZ0Kgh0YpTqDRK66JmbHaJGtWwbgkIN-OutFile ngrok.zip
+        Invoke-WebRequest https://drive.google.com/uc?id=19iu40U8Hkxg89KwTdyvBKGqD4uLt5EU2 -OutFile start.bat
+        Invoke-WebRequest https://drive.google.com/uc?id=1sBtrHP3LKfNfPvvRrH4mDFEuzf24DH15 -OutFile wallpaper.jpg
+        Invoke-WebRequest https://drive.google.com/uc?id=1g54TGBERM1_NiKxvjW7-ZRFQ7dg5f7Pq -OutFile wallpaper.bat
+    - name: Mengekstrasi berkas Ngrok.
+      run: Expand-Archive ngrok.zip
+    - name: Terhubung Ke Akun Ngrok.
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+    - name: Mengaktifkan Akses RDP.
+      run: | 
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+        copy wallpaper.jpg D:\a\wallpaper.jpg
+        copy wallpaper.bat D:\a\wallpaper.bat
+    - name: Membuat Tunnel.
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
+    - name: Terhubung Ke RDP Kamu CPU 2 Core - 7GB Ram - 255 SSD.
+      run: cmd /c start.bat
+    - name: Selamat RDP Anda Berhasil Dibuat! Silahkan Tutup Tab ini Sekarang.
+      run: | 
+        Invoke-WebRequest https://drive.google.com/uc?id=d/1Dhs58eb87Ddv19mIdbLpejTHOKKQyfPr -OutFile loop.ps1
+        ./loop.ps1
